@@ -3,14 +3,8 @@
 Required libraries 
 
 ```pip install -r requirements.txt```
-Frontend Depandencies ( need node, bower )
-```
-   Install node from node site 
-   npm install -g bower
-```  
+Frontend Depandencies ( need bootstrap )
 
-You can then install dependencies using
-  ```  bower install```
 
 
 To run this project 
