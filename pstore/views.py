@@ -1,5 +1,4 @@
 from django.shortcuts import render,HttpResponse
-import json
 import requests
 from bs4 import BeautifulSoup
 from pstore.models import QueryResult
