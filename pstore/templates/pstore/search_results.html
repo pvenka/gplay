@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/static/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap-theme.min.css">
+</head>
+<body>
+<h1 class="text-center"> Google Play Store Search </h1>
+	<div class="col-lg-12">
+      <style>
+        .form-signin {
+          max-width: 550px;
+          padding: 15px;
+          margin: 0 auto;
+        }    
+      </style>
+
+
+      <div class="container text-center">
+          <form class="form-signin" id="login_form" method="post" action="/pstore/search_results/">
+            {% csrf_token %}
+
+            <br>
+            <input type="text" name="query" class="form-control" placeholder="search term, e.g: Gandhi" value="" required autofocus>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Get Search Results</button>
+          </form>
+      </div>
+      <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped tablesorter">
+              <thead>
+              <tr>
+                <th class="header"> Category <i class="icon-sort"></i></th>
+                <th class="header"> Title <i class="icon-sort"></i></th>
+                <th class="header"> Link <i class="icon-sort"></i></th>
+              </tr>
+          </thead>
+          <tbody>
+          
+          {% for k in results %}
+              <tr>
+                  <td>{{ k.category }}</td>
+                  <td>{{ k.title }}</td>
+                  <td><a href={{ k.link }}>Link</a></td>
+              </tr>
+          {% endfor %}
+          
+          </tbody>
+          </table>
+      </div>
+    </div>
+</body>
+</html>
