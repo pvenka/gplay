@@ -3,16 +3,14 @@ from django.db import models
 # Create your models here.
 
 class QueryResult(models.Model):
-  sterm = models.CharField(
-	 max_length=255,
-	)
+	 
   category = models.CharField(
          max_length=255,
 	)
   title = models.CharField(
 	 max_length=255,
 	)
-  link = models.CharField(
+  link = models.URLField(
   	 max_length=255,
 	)
 
@@ -22,11 +20,15 @@ def __str__(self):
 	  self.title,
 	  self.link,
 	])
+class Query(models.Model):
+     sterm = models.CharField(
+           max_length=255,
+	)
+     queryresult = models.ForeignKey(QueryResult, on_delete=models.CASCADE)
+def __str__(self):
+	return self.sterm
 
 class App(models.Model):
-  sterm = models.CharField(
-         max_length=255,
-        )
   AppId = models.CharField(
             max_length=255)
   AppName = models.CharField(
@@ -46,3 +48,12 @@ def __str__(self):
          self.DevEmail,
          self.IconURL,
 	])
+
+class AppQuery(models.Model):
+     sterm = models.CharField(
+           max_length=255,
+        )
+     app = models.ForeignKey(App, on_delete=models.CASCADE)
+def __str__(self):
+        return self.sterm
+
